@@ -7,6 +7,7 @@ const port = process.env.PORT || 3001;
 //Routes
 const userRoutes = require("./api/UserRoutes");
 const accountRoutes = require("./api/AccountRoutes");
+const thirdPartyRoutes = require("./api/ThirdPartyRoutes");
 
 const app = express();
 app.use(cors());
@@ -18,6 +19,7 @@ app.get("/", (req, res) => {
 
 app.use("/users", userRoutes);
 app.use("/account", accountRoutes);
+app.use("/thirdparty", thirdPartyRoutes);
 
 mongoose
   .connect(process.env.MONGODB, { useUnifiedTopology: true })

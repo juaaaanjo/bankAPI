@@ -28,27 +28,28 @@ router.post("/register", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
-    console.log(req.params)
-  User.findById({_id: req.params.id}).then((user) => {
-      console.log(user)
-    if (user) {
-        res.status(200).json(user)
-    }else{
-        res.status(401).json({error: "No existe usuario con ID"})
-    }
-  })
-  .catch((err) => {
-    res.status(500).json({ error: err.mesagge });
-  });
-  });
+  console.log(req.params);
+  User.findById({ _id: req.params.id })
+    .then((user) => {
+      console.log(user);
+      if (user) {
+        res.status(200).json(user);
+      } else {
+        res.status(401).json({ error: "No existe usuario con ID" });
+      }
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err.mesagge });
+    });
+});
 
 router.post("/login", (req, res) => {
   User.findOne({ email: req.body.email, password: req.body.password })
     .then((user) => {
       if (user) {
-          res.status(200).json(user)
-      }else{
-          res.status(401).json({error: "Incorrect email or password"})
+        res.status(200).json(user);
+      } else {
+        res.status(401).json({ error: "Incorrect email or password" });
       }
     })
     .catch((err) => {
