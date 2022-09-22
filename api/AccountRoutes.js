@@ -5,10 +5,10 @@ function randomNumber(min, max) {
   return Math.random() * (max - min) + min;
 }
 
-router.put("/:id", async (req, res) => {
+router.patch("/:id", async (req, res) => {
   const { id } = req.params;
   console.log(req.params);
-  const updateAccount = await Account.findOneAndUpdate(id, req.body, {
+  const updateAccount = await Account.findOneAndUpdate({_id: id}, req.body, {
     runValidators: true,
   }).then((account) => {
     if (account) {
